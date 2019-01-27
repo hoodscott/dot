@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        height: 100vh;
+        min-height: 600px;
+        max-width: 500px;
+        margin: 0 auto;
+        box-sizing: border-box;
+        background: aliceblue;
+      }
+      section {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: stretch;
+      }
+      section>div {
+        height: 20%;
+        border-radius: 4rem;
+        box-shadow: inset 0px 0px 0px 5px;
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 2rem;
+      }
+      .option{
+        cursor: pointer;
+        transition: opacity 250ms ease-in-out;
+      }
+      .option:hover {
+        box-shadow:inset 0px 0px 0px 10px currentColor;
+      }
+      .option:nth-child(1) {
+        color: green;
+        justify-content: center;
+      }
+      .option:nth-child(2) {
+        color: orange;
+      }
+      .option:nth-child(3) {
+        color: red;
+      }
+      .option:nth-child(1)>span {
+        background-color: green;
+      }
+      .option:nth-child(2)>span {
+        background-color: orange;
+      }
+      .option:nth-child(3)>span {
+        background-color: red;
+      }
+      .dot,
+      .dash {
+        background: inherit;
+        border-radius: 100px;
+        height: 4rem;
+        width: 4rem;
+        margin: auto 1rem;
+      }
+      .dash {
+        width: 8rem;
+      }
+      #image {
+        height: 100%;
+        max-height: 500px;
+        color: red;
+      }
+      #input {
+        color:green;
+      }
+    </style>
+  </head>
+  <body>
+    <section id="main">
+      <div id="easy" class="option">
+        <span class="dot"></span>
+      </div>
+      <div id="medium" class="option">
+        <span class="dash"></span>
+        <span class="dash"></span>
+      </div>
+      <div id="hard" class="option">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </section>
+    <section id="level" style="display:none;">
+      <div id="image"></div>
+      <div id="input"></div>
+    </section>
+  </body>
+  <script>
+    document.querySelectorAll('.option').forEach(element => {
+      element.addEventListener("click", () => {
+        let time = 0;
+        document.querySelectorAll('.option').forEach(option => {
+          if (option.id !== element.id) {
+            option.style.opacity = 0;
+          } else {
+            option.style.backgroundColor = window.getComputedStyle(option).color;
+            setTimeout(() => {
+              option.style.opacity = 0;
+            },500);
+            setTimeout(() => {
+              startGame(option.id);
+            },750);
+          }
+        });
+      });
+    });
+
+    function startGame(mode) {
+      document.getElementById('main').style.display = 'none';
+      document.getElementById('level').style.display = 'flex';
+    }
+  </script>
+</html>
