@@ -1,4 +1,9 @@
 const codes = {};
+const dotLength = 150;
+const shortLength = 500;
+const longLength = 1000;
+let textString = '';
+let mouseUp = true;
 
 codes.dot = {
   letter: 'e'
@@ -53,9 +58,9 @@ function intToDecString(num) {
   return bin_string;
 }
 
-for (i = 0; i < 62; i++) {
-  console.log(i, intToDecString(i));
-}
+// for (i = 0; i < 62; i++) {
+//   console.log(i, intToDecString(i));
+// }
 
 document.querySelectorAll('.option').forEach(element => {
   element.addEventListener("click", () => {
@@ -73,6 +78,46 @@ document.querySelectorAll('.option').forEach(element => {
       }
     });
   });
+});
+
+/* Record when the input button is pressed */
+document.getElementById('input').addEventListener("mousedown", () => {
+  mouseUp = false;
+  downTime = Date.now();
+});
+/* Trigger some functions when the button is released */
+document.getElementById('input').addEventListener("mouseup", () => {
+  mouseUp = true;
+  upTime = Date.now();
+  /* If the uptime is short, this is a dot, otherwise a dash */
+  if (upTime - downTime < dotLength) {
+    textString += '.';
+  } else {
+    textString += '-';
+  }
+  /* Add the symbol to the string */
+  document.getElementById('text').innerText = textString;
+
+  /* Store the current string locally so we can check if it has changed */
+  const t = textString;
+  /* Create short callback function for spaces between letters */
+  setTimeout(() => {
+    /* If the string is unchanged and there are no current clicks */
+    if (t == textString && mouseUp) {
+      /* Add a space between letters */
+      textString += ' ';
+    }
+  }, shortLength, t);
+  /* Create long callback function for spaces between words */
+  setTimeout(() => {
+    /* If the string is unchanged (other than letterspace)
+      and there are no current clicks */
+    if ((t + ' ') == textString && mouseUp) {
+      /* Print the string, then reset it */
+      console.log(textString);
+      textString = '';
+    }
+  }, longLength, t);
 });
 
 function startGame(mode) {
