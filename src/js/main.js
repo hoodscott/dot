@@ -11,8 +11,38 @@ codes.dot = {
 codes.dot.dot = {
   letter: 'i'
 };
+codes.dot.dot.dot = {
+  letter: 's'
+};
+codes.dot.dot.dot.dot = {
+  letter: 'h'
+};
+codes.dot.dot.dot.dash = {
+  letter: 'v'
+};
+codes.dot.dot.dash = {
+  letter: 'u'
+};
+codes.dot.dot.dash.dot = {
+  letter: 'f'
+};
 codes.dot.dash = {
   letter: 'a'
+};
+codes.dot.dash.dot = {
+  letter: 'r'
+};
+codes.dot.dash.dot.dot = {
+  letter: 'l'
+};
+codes.dot.dash.dash = {
+  letter: 'w'
+};
+codes.dot.dash.dashh = {
+  letter: 'p'
+};
+codes.dot.dash.dash.dash = {
+  letter: 'j'
 };
 
 codes.dash = {
@@ -21,8 +51,38 @@ codes.dash = {
 codes.dash.dot = {
   letter: 'n'
 };
+codes.dash.dot.dot = {
+  letter: 'd'
+};
+codes.dash.dot.dot.dot = {
+  letter: 'b'
+};
+codes.dash.dot.dot.dash = {
+  letter: 'x'
+};
+codes.dash.dot.dash = {
+  letter: 'k'
+};
+codes.dash.dot.dash.dot = {
+  letter: 'c'
+};
+codes.dash.dot.dash.dash = {
+  letter: 'y'
+};
 codes.dash.dash = {
   letter: 'm'
+};
+codes.dash.dash.dot = {
+  letter: 'g'
+};
+codes.dash.dash.dot.dot = {
+  letter: 'z'
+};
+codes.dash.dash.dot.dash = {
+  letter: 'q'
+};
+codes.dash.dash.dash = {
+  letter: 'o'
 };
 
 /**
