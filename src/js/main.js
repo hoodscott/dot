@@ -1,6 +1,6 @@
 const codes = {};
 const dotLength = 150;
-const shortLength = 500;
+const shortLength = 450;
 const longLength = 1000;
 let textString = '';
 let mouseUp = true;
@@ -141,12 +141,14 @@ document.querySelectorAll('.option').forEach(element => {
 });
 
 /* Record when the input button is pressed */
-document.getElementById('input').addEventListener("mousedown", () => {
+document.getElementById('input').addEventListener("mousedown", (el) => {
+  el.target.style.background = 'green';
   mouseUp = false;
   downTime = Date.now();
 });
 /* Trigger some functions when the button is released */
-document.getElementById('input').addEventListener("mouseup", () => {
+document.getElementById('input').addEventListener("mouseup", (el) => {
+  el.target.style.background = 'none';
   mouseUp = true;
   upTime = Date.now();
   /* If the uptime is short, this is a dot, otherwise a dash */
@@ -155,8 +157,6 @@ document.getElementById('input').addEventListener("mouseup", () => {
   } else {
     textString += '-';
   }
-  /* Add the symbol to the string */
-  document.getElementById('text').innerText = textString;
 
   /* Store the current string locally so we can check if it has changed */
   const t = textString;
@@ -166,6 +166,7 @@ document.getElementById('input').addEventListener("mouseup", () => {
     if (t == textString && mouseUp) {
       /* Add a space between letters */
       textString += ' ';
+      printText(textString);
     }
   }, shortLength, t);
   /* Create long callback function for spaces between words */
@@ -179,6 +180,34 @@ document.getElementById('input').addEventListener("mouseup", () => {
     }
   }, longLength, t);
 });
+
+// printText('... --- ...');
+
+/* Converts a morse word to text */
+function printText(t) {
+  let outString = '';
+  /* Loop through each letter in the word */
+  t.trim().split(' ').forEach((letter) => {
+    /* Traverse the codes tree for each symbol */
+    let curLet = codes;
+    /* Put this in a try block to protect from
+      Type Errors when an incorrect letter is entered */
+    try {
+      for (i = 0; i < letter.length; i++) {
+        if (letter[i] == '.') {
+          curLet = curLet.dot;
+        } else {
+          curLet = curLet.dash;
+        }
+      }
+      /* Append letter to the word */
+      outString += curLet.letter;
+    } catch (e) {
+      console.error('invalid letter', letter);
+    }
+  });
+  document.getElementById('text').innerText = outString;
+}
 
 function startGame(mode) {
   document.getElementById('main').style.display = 'none';

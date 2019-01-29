@@ -73,7 +73,8 @@ section>div {
 }
 
 #display {
-  color: blue
+  color: blue;
+  align-items: center;
 }
 
 #text {
@@ -81,6 +82,7 @@ section>div {
   user-select: none;
   word-wrap: break-word;
   width: 100%;
+  text-align: center;
 }
 
 #input {
